@@ -4,10 +4,11 @@ import Container from "../componentes/Container";
 import Filtros from "../componentes/Filtros";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import produtos from "../itens/produtos";
+import { useNavigate } from "react-router-dom";
 
 const PageCorinthians = () => {
   const [pagina, setPagina] = useState(1);
-  const [produtoSelecionado, setProdutoSelecionado] = useState(null); // Estado para armazenar produto selecionado
+  const navigate = useNavigate();
 
   const produtosPorPagina = 16;
   const indexInicial = (pagina - 1) * produtosPorPagina;
@@ -18,7 +19,7 @@ const PageCorinthians = () => {
   const totalPaginas = Math.ceil(produtos.length / produtosPorPagina);
 
   const handleClickOpen = (produto) => {
-    setProdutoSelecionado(produto);
+    navigate(`/produto/${produto.id}`, { state: { produto } }); // Passando o produto pelo state
   };
 
   return (
@@ -34,7 +35,12 @@ const PageCorinthians = () => {
               <ProdutoImage imageUrl={produto.imageUrl} />
               <ProdutoNome>{produto.nome}</ProdutoNome>
               <ProdutoCategoria>{produto.categoria}</ProdutoCategoria>
-              <ProdutoPreco>{produto.preco}</ProdutoPreco>
+              <ProdutoPreco>
+                {produto.preco.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </ProdutoPreco>
             </Quadrado>
           ))}
         </BoxProdutos>
@@ -63,9 +69,9 @@ const PageCorinthians = () => {
 
 // Estilizações (mantidas as mesmas)
 const ProdutosContainer = styled.div`
-  width: calc(100% - 320px); 
+  width: calc(100% - 320px);
   height: 80vh;
-  overflow-y: auto; 
+  overflow-y: auto;
   padding-left: 20px;
   margin-top: 20px;
 `;
