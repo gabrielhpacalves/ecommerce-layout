@@ -37,10 +37,9 @@ const Home = () => {
       <BoxBanner>
         <Banner src="/img/justdoit.png" alt="Banner" />
       </BoxBanner>
-
-      <TituloPrincipal>Destaques</TituloPrincipal>
+      
       <BoxCategorias>
-        <Link to="/Corinthians">
+        <Link to="/Produtos">
           <Categoria wallpaper="/img/corinthiansFundo.jpg" title="Corinthians">
             <Foto src="/img/wCorinthians.png" alt="Banner" />
           </Categoria>
@@ -53,33 +52,16 @@ const Home = () => {
           <Foto src="/img/wNFL.png" alt="Banner" />
         </Categoria>
 
-        <Categoria wallpaper="/img/runningfundo.jpeg" title="Running">
-          <Foto src="/img/wRunning.png" alt="Banner" />
+        <Categoria wallpaper="/img/palmeirasfundo.png" title="Palmeiras">
+          <Foto src="/img/wPalmeiras.png" alt="Banner" />
         </Categoria>
-        <Categoria wallpaper="/img/tennisFundo.jpeg" title="Tennis">
-          <Foto src="/img/wTennis.png" alt="Banner" />
+        <Categoria wallpaper="/img/SPFundo.png" title="São Paulo FC">
+          <Foto src="/img/wSP.png" alt="Banner" />
         </Categoria>
         <Categoria wallpaper="/img/futebolFundo.jpg" title="Futebol">
           <Foto src="/img/wFutebol.png" alt="Banner" />
         </Categoria>
       </BoxCategorias>
-
-      <TituloPrincipal>Ícones Nike</TituloPrincipal>
-
-      <BoxIconesNike ref={boxIconesRef} className={isVisible ? "visible" : ""}>
-        <Icone imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/touts/big-3-air-force-1-desk-v3.jpg" />
-        <Icone imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/touts/big-3-dunk-desk-v3.jpg" />
-        <Icone imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/touts/big-3-air-jordan-1-desk-v3.jpg" />
-        <Icone imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/touts/big-3-airmax-desk-v3.jpg" />
-      </BoxIconesNike>
-
-      <TituloPrincipal>Conheça também</TituloPrincipal>
-
-      <BoxVertical>
-        <ImagemVertical imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/conheca-tambem/CARROSSEL_A-v4.jpg" />
-        <ImagemVertical imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/conheca-tambem/cartao-presente-B.jpg" />
-        <ImagemVertical imageUrl="https://imgnike-a.akamaihd.net/branding/home-sbf/conheca-tambem/CARROSSEL_C-V2.jpg" />
-      </BoxVertical>
     </Container>
   );
 };
@@ -150,6 +132,7 @@ const Categoria = styled.div`
 `;
 
 const BoxBanner = styled.div`
+  margin-top: -20px;
   width: 100%;
   height: 100px;
   display: flex;

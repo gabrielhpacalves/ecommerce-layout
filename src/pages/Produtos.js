@@ -6,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import produtos from "../itens/produtos";
 import { useNavigate } from "react-router-dom";
 
-const PageCorinthians = () => {
+const Page = () => {
   const [pagina, setPagina] = useState(1);
   const navigate = useNavigate();
 
@@ -137,8 +137,8 @@ const Paginas = styled.div`
 `;
 
 const PaginaBotao = styled.button`
-  background-color: #054f77;
-  color: white;
+  background-color: transparent;
+  color: #043d5a;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -147,13 +147,10 @@ const PaginaBotao = styled.button`
   border-radius: 5px;
 
   &:disabled {
-    background-color: #ddd;
+    color: gray;
     cursor: not-allowed;
   }
 
-  &:hover {
-    background-color: #043d5a;
-  }
 `;
 
 const PaginaInfo = styled.p`
@@ -161,4 +158,4 @@ const PaginaInfo = styled.p`
   color: #333;
 `;
 
-export default PageCorinthians;
+export default Page;

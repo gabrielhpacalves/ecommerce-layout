@@ -62,7 +62,7 @@ export default function Login() {
           aria-describedby="alert-dialog-slide-description"
         >
           <DialogTitle>
-            <StyledLogo src="/img/logo_nike.png" alt="Logo" />
+            <StyledLogo src="/img/logo.png" alt="Logo" />
           </DialogTitle>
           <DialogContent>
 
@@ -114,7 +114,7 @@ const StyledDialogActions = styled(DialogActions)`
 const StyledButton = styled.button`
   width: calc(100% - 30px);
   margin: 0 auto;
-  background-color: black;
+  background-color: #0a2240;
   color: white;
   border: none;
   padding: 10px 20px;

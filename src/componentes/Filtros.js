@@ -108,7 +108,7 @@ const CategoriaTexto = styled.span`
 
 const Seta = styled.span`
   font-size: 16px;
-  color: #555;
+  color: #0a2240;
 `;
 
 const Itens = styled.div`
