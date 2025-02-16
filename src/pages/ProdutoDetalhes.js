@@ -209,7 +209,7 @@ const ArrowIcon = styled(AiOutlineDown)`
 `;
 
 const BotaoAdicionar = styled.button`
-  background: black;
+  background: #0a2240;
   padding: 20px 40px;
   color: white;
   width: 50%;
@@ -219,7 +219,7 @@ const BotaoAdicionar = styled.button`
 `;
 
 const Optiontitle = styled.option`
-  background: black;
+  background: #0a2240;
   padding: 20px 40px;
   color: white;
   width: 50%;
