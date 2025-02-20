@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Container from "../componentes/Container";
 import Filtros from "../componentes/Filtros";
@@ -11,23 +11,50 @@ const Page = () => {
   const navigate = useNavigate();
 
   const produtosPorPagina = 16;
+  const [filtrosSelecionados, setFiltrosSelecionados] = useState({
+    departamento: [],
+    esporte: [],
+    marca: [],
+    time: [],
+  });
+
+  const filtrarProdutos = (produto) => {
+    const { departamento, esporte, marca, time } = filtrosSelecionados;
+
+    const filtroDepartamento =
+      departamento.length === 0 || departamento.includes(produto.categoria);
+    const filtroEsporte =
+      esporte.length === 0 || esporte.includes(produto.esporte);
+    const filtroMarca = marca.length === 0 || marca.includes(produto.marca);
+    const filtroTime = time.length === 0 || time.includes(produto.time);
+
+    return filtroDepartamento && filtroEsporte && filtroMarca && filtroTime;
+  };
+
+  const produtosFiltrados = produtos.filter(filtrarProdutos);
+  const totalPaginas = Math.ceil(produtosFiltrados.length / produtosPorPagina);
+
   const indexInicial = (pagina - 1) * produtosPorPagina;
-  const produtosVisiveis = produtos.slice(
+  const produtosVisiveis = produtosFiltrados.slice(
     indexInicial,
     indexInicial + produtosPorPagina
   );
-  const totalPaginas = Math.ceil(produtos.length / produtosPorPagina);
 
   const handleClickOpen = (produto) => {
     navigate(`/produto/${produto.id}`, { state: { produto } }); // Passando o produto pelo state
   };
 
+  useEffect(() => {
+    // Resetar a página para 1 sempre que o filtro mudar
+    setPagina(1);
+  }, [filtrosSelecionados]);
+
   return (
     <Container>
       <TituloPrincipal>
-        Produtos e coleções exclusivas ({produtos.length})
+        Produtos e coleções exclusivas ({produtosFiltrados.length})
       </TituloPrincipal>
-      <Filtros />
+      <Filtros onFiltrar={setFiltrosSelecionados} />
       <ProdutosContainer>
         <BoxProdutos>
           {produtosVisiveis.map((produto, index) => (
@@ -70,7 +97,6 @@ const Page = () => {
 // Estilizações (mantidas as mesmas)
 const ProdutosContainer = styled.div`
   width: calc(100% - 320px);
-  height: 80vh;
   overflow-y: auto;
   padding-left: 20px;
   margin-top: 20px;
@@ -150,7 +176,6 @@ const PaginaBotao = styled.button`
     color: gray;
     cursor: not-allowed;
   }
-
 `;
 
 const PaginaInfo = styled.p`

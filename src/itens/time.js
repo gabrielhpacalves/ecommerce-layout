@@ -1,4 +1,4 @@
-const times = [
+const time = [
   //FUTEBOL
   {
     id: "1",
@@ -108,4 +108,4 @@ const times = [
   },
 ];
 
-export default times;
+export default time;
