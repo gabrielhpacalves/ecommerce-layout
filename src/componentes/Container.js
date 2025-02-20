@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Navbar from "../componentes/Navbar";
+import Navbar from "./Navbar";
 import { FaUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import Modal from "./ModalLogin";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Container = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,13 @@ const Container = ({ children }) => {
 
   return (
     <Wrapper>
+      <WhatsAppButton
+        href="https://wa.me/5511999999999"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaWhatsapp />
+      </WhatsAppButton>
       <Modal />
       <CarrinhoItens $cartOpen={cartOpen}></CarrinhoItens>
       <Box>
@@ -52,7 +60,7 @@ const Container = ({ children }) => {
       <Conteudo>{children}</Conteudo>
 
       <RodapeContainer>
-      <SocialIcons>
+        <SocialIcons>
           <IconLink
             href="https://instagram.com"
             target="_blank"
@@ -136,7 +144,7 @@ const CartIcon = styled(FaCartShopping)`
   right: 50px;
   top: 15px;
   font-size: 24px;
-  color: #000;
+  color: #fff;
   cursor: pointer;
 
   &:hover {
@@ -153,6 +161,7 @@ const Box = styled.div`
   z-index: 4;
   position: fixed;
   background: #fff;
+  background-color: #f0062a;
 `;
 
 const Logo = styled.img`
@@ -208,7 +217,7 @@ const TextContainer = styled.div`
 
 const Conteudo = styled.div`
   width: calc(100% - 100px);
-  padding: 150px 40px;
+  padding: 150px 40px 40px 40px;
   float: left;
 `;
 
@@ -216,7 +225,7 @@ const RodapeContainer = styled.footer`
   text-align: center;
   color: white;
   padding: 20px;
-  background-color: black;
+  background-color: #f0062a;
 `;
 
 const TextoRodape = styled.p`
@@ -246,6 +255,30 @@ const IconLink = styled.a`
 
   &:hover {
     color: gray;
+  }
+`;
+
+const WhatsAppButton = styled.a`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  text-decoration: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: #1ebe5d;
+    transform: scale(1.1);
   }
 `;
 

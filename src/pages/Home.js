@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Container from "../componentes/Container";
+import Carrossel from "../componentes/Carrossel";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -34,10 +35,11 @@ const Home = () => {
 
   return (
     <Container>
-      <BoxBanner>
+      {/*}<BoxBanner>
         <Banner src="/img/justdoit.png" alt="Banner" />
-      </BoxBanner>
-      
+      </BoxBanner>{*/}
+
+      <Carrossel />
       <BoxCategorias>
         <Link to="/Produtos">
           <Categoria wallpaper="/img/corinthiansFundo.jpg" title="Corinthians">

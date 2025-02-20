@@ -33,13 +33,14 @@ const Box = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 `;
 
 const FiltrosMenu = styled.div`
   position: fixed;
   width: 100%;
-  background-color: #fff;
-  heigth: 400px;
+  background-color: #f0062a;
+  height: 400px;
   z-index: 2;
   margin-top: 73px;
   left: 0;
@@ -64,7 +65,7 @@ const MenuItem = styled.li`
 
   a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-weight: bold;
     font-size: 16px;
     transition: color 0.3s ease;

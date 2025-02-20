@@ -2,35 +2,28 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
-const Filtros = () => {
+import departamento from "../itens/departamento";
+import esporte from "../itens/esporte";
+import marca from "../itens/marca";
+import time from "../itens/time";
+
+const Filtros = ({ onFiltrar }) => {
   const categorias = [
     {
-      nome: "Preço",
-      itens: ["Até R$ 100", "R$ 100 - R$ 200", "R$ 200 - R$ 300", "R$ 400 - R$ 500", "Acima de R$ 500"],
+      nome: "Departamento",
+      itens: [...departamento],
     },
     {
-      nome: "Tamanho",
-      itens: ["PP", "P", "M", "G", "GG", "GGG"],
+      nome: "Esporte",
+      itens: [...esporte],
     },
     {
-      nome: "Esportes",
-      itens: ["Futebol", "Basquete"],
+      nome: "Marca",
+      itens: [...marca],
     },
     {
-      nome: "Tecnologia",
-      itens: ["Nike Air", "Nike Zoom"],
-    },
-    {
-      nome: "Tipo de Produto",
-      itens: ["Calçados", "Roupas", "Calçados"],
-    },
-    {
-      nome: "Tecidos",
-      itens: ["Algodão", "Poliéster"],
-    },
-    {
-      nome: "Gênero",
-      itens: ["Masculino", "Feminino", "Unissex"],
+      nome: "Time",
+      itens: [...time],
     },
   ];
 
@@ -39,6 +32,16 @@ const Filtros = () => {
 
   const toggleExpand = (index) => {
     setExpanded(expanded === index ? null : index);
+  };
+
+  const handleCheckboxChange = (categoria, itemId) => {
+    onFiltrar((prevFiltros) => {
+      const filtroAtualizado = prevFiltros[categoria].includes(itemId)
+        ? prevFiltros[categoria].filter((id) => id !== itemId)
+        : [...prevFiltros[categoria], itemId];
+
+      return { ...prevFiltros, [categoria]: filtroAtualizado };
+    });
   };
 
   const handleScroll = () => {
@@ -54,19 +57,32 @@ const Filtros = () => {
   }, []);
 
   return (
-    <Container isSticky={isSticky}>
+    <Container>
       {categorias.map((categoria, index) => (
         <CategoriaBox key={index}>
           <CategoriaHeader onClick={() => toggleExpand(index)}>
             <CategoriaTexto>{categoria.nome}</CategoriaTexto>
-            <Seta>{expanded === index ? <FaChevronUp /> : <FaChevronDown />}</Seta>
+            <Seta>
+              {expanded === index ? <FaChevronUp /> : <FaChevronDown />}
+            </Seta>
           </CategoriaHeader>
           {expanded === index && (
             <Itens>
-              {categoria.itens.map((item, itemIndex) => (
-                <Checkbox key={itemIndex}>
-                  <input type="checkbox" id={`item-${index}-${itemIndex}`} />
-                  <label htmlFor={`item-${index}-${itemIndex}`}>{item}</label>
+              {categoria.itens.map((item) => (
+                <Checkbox key={item.id}>
+                  <input
+                    type="checkbox"
+                    id={`item-${index}-${item.id}`}
+                    onChange={() =>
+                      handleCheckboxChange(
+                        categoria.nome.toLowerCase(),
+                        item.id
+                      )
+                    }
+                  />
+                  <label htmlFor={`item-${index}-${item.id}`}>
+                    {item.nome}
+                  </label>
                 </Checkbox>
               ))}
             </Itens>
@@ -82,7 +98,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   float: left;
-  position: ${({ isSticky }) => (isSticky ? "sticky" : "static")}; /* Fixa quando rolar */
+  position: ${({ isSticky }) => (isSticky ? "sticky" : "static")};
   top: 0;
   z-index: 10;
 `;
